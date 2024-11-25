@@ -1,0 +1,9 @@
+ $filename = $_FILES['upload']['name'];
+        $filetype = $_FILES['upload']['type'];
+        $tmp_name = $_FILES['upload']['tmp_name'];
+        $filesize = $_FILES['upload']['size'];
+
+        $allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png']; 
+            $maxFileSizeLimit = 1 * 1024 * 1024; 
+            $upload_path = "uploads/" . basename($filename);
+            $date_uploaded = date('Y-m-d H:i:s');

@@ -1,0 +1,81 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #464040;
+    margin: 0;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+   
+}
+
+table th, table td {
+    padding: 15px;
+    border: 1px solid #ddd;
+   
+}
+
+table th {
+    background-color: #3e3b3b;
+    font-weight: bold;
+  
+}
+
+h2 {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    text-align: center;
+    color: #464040;
+  
+}
+
+p {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 18px;
+    line-height: 1.9;
+ 
+}
+.buanga button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.buanga button a {
+    color: white;
+    text-decoration: none;
+}
+
+.buanga button:hover {
+    background-color: #45a049;
+}
+.container
+
+.actdelete {
+    background-color: #f44336; /* Red */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 3px;
+}
