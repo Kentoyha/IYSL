@@ -92,7 +92,7 @@
             while ($result = mysqli_fetch_assoc($query)) {
                 $player_id = $result['id']; 
                 echo "<tr>";
-                echo "<td><a href='Player_profile.php?Player_id=" . $result["Player_id"] . "'><img src='{$result['File_path']}' width='100' height='100' style='border-radius: 50%;'></a></td>";
+                echo "<td><a href='toyken.php?Player_id=" . $result["Player_id"] . "'><img src='{$result['File_path']}' width='100' height='100' style='border-radius: 50%;'></a></td>";
                 echo "<td>" . $result["Last_name"] . ", " . $result["First_name"] . " " . $result["Middle_name"] . "</td>";
                 echo "<td>" . date("F d, Y", strtotime($result['Date_of_birth'])) . "</td>";
                 echo "<td>{$result['Email']}</td>";

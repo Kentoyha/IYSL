@@ -16,7 +16,6 @@ include("header.php");
         
     <table border="1" align="center" cellspacing="0" cellpadding="10">
         <h1>TEAMS</h1>
-        <hr>
 <div class="buanga" >
     <a href="insert_team.php"><button>Add team</button></a>
 </div>

@@ -15,6 +15,7 @@
     padding: 0;
     box-sizing: border-box; /* Added for better layout control */
     font-family: 'Arial', sans-serif;
+    
 }
 
 body {
