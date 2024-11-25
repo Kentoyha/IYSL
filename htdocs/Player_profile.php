@@ -32,29 +32,28 @@ if (isset($_GET['Player_id'])) {
     <link rel="stylesheet" href="profile.css"> <!-- Link to CSS for styling -->
 </head>
 <body>
-    <div class="profile-container">
+    <div class="profile-container" style="display: flex; justify-content: center; align-items: center; flex-direction: column; height: 80vh;">
         <h1>Player Profile</h1>
-        <div class="profile-card">
+        <div class="profile-card" style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
             <!-- Player Photo -->
             <div class="profile-photo">
-                <?php if (!empty($player['file_path'])): ?>
-                    <img src="<?php echo $player['file_path']; ?>" alt="Player Photo">
-                <?php else: ?>
-                    <img src="default_photo.png" alt="Default Photo">
-                <?php endif; ?>
+            <?php if (!empty($player['file_path'])): ?>
+                <img src="<?php echo $player['file_path']; ?>" alt="Player Photo">
+            <?php else: ?>
+                <img src="default_photo.png" alt="Default Photo">
+            <?php endif; ?>
             </div>
 
             <!-- Player Details -->
-            <div class="profile-details">
-                <h2><?php echo htmlspecialchars($player['First_name'] . " " . $player['Last_name']); ?></h2>
-                <p><strong>Date of Birth:</strong> <?php echo htmlspecialchars($player['Date_of_birth']); ?></p>
-                <p><strong>Email:</strong> <?php echo htmlspecialchars($player['Email']); ?></p>
-                <p><strong>Contact Number:</strong> <?php echo htmlspecialchars($player['Contact_number']); ?></p>
-                <p><strong>Team:</strong> <?php echo htmlspecialchars($player['Team_name']); ?></p>
-                <p><strong>Uploaded On:</strong> <?php echo htmlspecialchars($player['upload_date']); ?></p>
+            <div class="profile-details" style="text-align: center;">
+            <h2><?php echo htmlspecialchars($player['First_name'] . " " . $player['Last_name']); ?></h2>
+            <p><strong>Date of Birth:</strong> <?php echo htmlspecialchars($player['Date_of_birth']); ?></p>
+            <p><strong>Email:</strong> <?php echo htmlspecialchars($player['Email']); ?></p>
+            <p><strong>Contact Number:</strong> <?php echo htmlspecialchars($player['Contact_number']); ?></p>
+            <p><strong>Team:</strong> <?php echo htmlspecialchars($player['Team_name']); ?></p>
             </div>
         </div>
-        <a href="Player_list.php" class="back-btn">Back to Player List</a>
+        <a href="Player_list.php" class="back-btn" style="text-align: center;">Back to Player List</a>
     </div>
 </body>
 </html>

@@ -19,7 +19,7 @@ include "menu.php";
 
     <h1 align="center"> <?php echo $team['Team_name']; ?> Player Line up</h1>
     
-    <table class="player-table" border="1" align="center" cellspacing="0" cellpadding="10">
+    <table>
         <thead>
             <tr>
                 <th>Full Name</th>
