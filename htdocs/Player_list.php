@@ -1,7 +1,7 @@
 <?php
     include("db_connect.php");
-    include("menu.php");
-    include("header.php");
+    
+   
 ?>
 
 <DOCTYPE html>
@@ -10,9 +10,12 @@
     <meta charset="UTF-8">
     <title>Player List</title>
     <link rel="stylesheet" href="playerlist.css">
-    
+    <?php include("header.php"); ?>
 </head>
 <body>
+    <?php
+    include("menu.php");
+    ?>
     <h1 class="title">PLAYERS</h1>
     <hr>
     
@@ -87,10 +90,10 @@
             echo "<tr><td colspan='4'>Error: " . $sql . "<br>" . mysqli_error($conn) . "</td></tr>";
         } else {
             while ($result = mysqli_fetch_assoc($query)) {
-                $player_id = $result['id']; // Assuming 'id' is the primary key in your Players table
+                $player_id = $result['id']; 
                 echo "<tr>";
-                echo "<td style='text-align: center;'><img src='images/{$result['playerimage']}' width='25' height='25' style='border-radius: 50%;'></td>";
-                echo "<td><a href='players_info.php?id=$player_id'>{$result['Last_name']}, {$result['First_name']} {$result['Middle_name']}</a></td>";
+                echo "<td><img src='{$result['File_path']}' width='100' height='100' style='border-radius: 50%;'></td>";
+                echo "<td><a href='Player_profile.php?id=$player_id'>{$result['Last_name']}, {$result['First_name']} {$result['Middle_name']}</a></td>";
                 echo "<td>" . date("F d, Y", strtotime($result['Date_of_birth'])) . "</td>";
                 echo "<td>{$result['Email']}</td>";
                 echo "<td>{$result['Contact_number']}</td>";

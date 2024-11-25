@@ -28,8 +28,8 @@ include "db_connect.php";
     }
     
 ?>
-    <h1> EDIT TEAM </h1>
-    <form method="post">
+    <h1> EDIT TEAM </h1>a
+    <form method="post" enctype="multipart/form-data">
         <table border=1 align="center" cellspacing="0" cellpadding="10">
             <tr>
                 <td> Team Name </td>
@@ -51,7 +51,18 @@ include "db_connect.php";
                 <td> Manager Middle Name </td>
                 <td> <input type="text" name="middlename" value="<?php echo $Team['manager_middlename']; ?>" required> </td>
 
+            </tr>
             <tr>
+                <td><label for="logo">Team Logo:</label></td>
+                <td>
+                    <?php if (!empty($Team['file_path'])): ?>
+                        <img src="<?php echo $Team['file_path']; ?>" alt="Team Logo" style="max-width: 150px; max-height: 150px;">
+                        <p>Current Logo</p>
+                    <?php endif; ?>
+                    <input type="file" name="logo" id="logo" accept="image/jpeg, image/png">
+                    <p>(Only .jpg and .png allowed, max size 2MB)</p>
+                </td>
+            </tr>
                 <input type="hidden" name="Team_id" value="<?php echo $Team_id; ?>">
                 <td colspan="2">
                     <div style="text-align: center;">
@@ -70,12 +81,47 @@ include "db_connect.php";
             $firstname = $_POST['firstname'];
             $middlename = $_POST['middlename'];
             $Team_id = $_POST['Team_id'];
+            $file_path = ''; 
+            $file_name = ''; 
+
+            if (isset($_FILES['logo']) && $_FILES['logo']['error'] == 0) {
+                $logo = $_FILES['logo'];
+    
+                
+                $allowed_types = ['image/jpeg', 'image/png'];
+                if (!in_array($logo['type'], $allowed_types)) {
+                    echo "<script>alert('Invalid file type. Only .jpg and .png files are allowed.');</script>";
+                } else {
+                    
+                    if ($logo['size'] > 2 * 1024 * 1024) {
+                        echo "<script>alert('File size is too large. Maximum size is 2MB.');</script>";
+                    } else {
+                        
+                        $new_file_name = uniqid() . '.' . pathinfo($logo['name'], PATHINFO_EXTENSION);
+                        $upload_dir = 'uploads/'; 
+                        $file_path = $upload_dir . $new_file_name;
+    
+                      
+                        if (move_uploaded_file($logo['tmp_name'], $file_path)) {
+                            $file_name = $new_file_name;
+    
+                           
+                            if (!empty($Team['file_path']) && file_exists($Team['file_path'])) {
+                                unlink($Team['file_path']);
+                            }
+                        } else {
+                            echo "<script>alert('Error uploading the photo.');</script>";
+                        }
+                    }
+                }
+            }
+    
 
             $sql = "SELECT * FROM Team WHERE Team_id = $Team_id";
             $query = mysqli_query($conn, $sql);
             
             if($query) {
-                $sql = "UPDATE Team SET Team_name = '$Team_name', City = '$City', manager_lastname = '$lastname', manager_firstname = '$firstname', manager_middlename = '$middlename' WHERE Team_id = $Team_id";
+        $sql = "UPDATE Team SET Team_name = '$Team_name', City = '$City', manager_lastname = '$lastname', manager_firstname = '$firstname', manager_middlename = '$middlename', File_path1 = '$file_path', File_name1 = '$file_name', date_upload = NOW() WHERE Team_id = $Team_id";
                 $query = mysqli_query($conn, $sql);
                 if($query) {
                     echo "<script> alert('Team updated successfully'); window.location='Teams.php';</script>";
