@@ -83,6 +83,11 @@
         color: white;
     }
 
+    .button.blue {
+        background-color: #1cc6ff;
+        color: white;
+    }
+
     .button.red {
         background-color: #f44336;
         color: white;
@@ -90,6 +95,10 @@
 
     .button.green:hover {
         background-color: #45a049;
+    }
+
+    .button.blue:hover {
+        background-color: #32b6e3;
     }
 
     .button.red:hover {
@@ -110,7 +119,7 @@
 <body>
     <h1 class="title">Players</h1>
     
-    <!-- Add Player Button Section -->
+    
     <div class="addplayer">
         <a href="Add_player.php">
             <button>Add Player</button>
@@ -136,7 +145,7 @@
                             }
                         ?>
                     </select>
-                    <button type="submit" name="process_edit" class="button green">Edit</button>
+                    <button type="submit" name="process_edit" class="button blue">Edit</button>
                     <button type="submit" name="process_delete" class="button red">Delete</button>
                 </th>
             </tr>

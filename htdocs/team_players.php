@@ -72,7 +72,7 @@ include "menu.php";
                 while ($result = mysqli_fetch_assoc($query)) {
                     echo "<tr>";
                     
-                    // Player Photo
+                   
                     if (!empty($result['File_path']) && file_exists($result['File_path'])) {
                         echo "<td><a href='Player_profile.php?Player_id=" . htmlspecialchars($result['Player_id']) . "'>";
                         echo "<img src='" . htmlspecialchars($result['File_path']) . "' alt='Player Photo' width='100' height='100' style='border-radius: 50%;'>";
@@ -81,16 +81,16 @@ include "menu.php";
                         echo "<td><p>No photo available</p></td>";
                     }
 
-                    // Full Name
+                    
                     echo "<td>" . htmlspecialchars($result["Last_name"]) . ", " . htmlspecialchars($result["First_name"]) . " " . htmlspecialchars($result["Middle_name"]) . "</td>";
                     
-                    // Date of Birth
+                  
                     echo "<td>" . date("F d, Y", strtotime($result["Date_of_birth"])) . "</td>";
                     
-                    // Email
+                  
                     echo "<td>" . htmlspecialchars($result["Email"]) . "</td>";
                     
-                    // Contact Number
+                   
                     echo "<td>" . htmlspecialchars($result["Contact_number"]) . "</td>";
 
                     echo "</tr>";

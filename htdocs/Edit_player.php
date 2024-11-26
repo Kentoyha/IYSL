@@ -42,7 +42,7 @@ if (isset($_POST['update_player'])) {
     $contact_number = mysqli_real_escape_string($conn, $_POST['contact_number']);
     $team_id = mysqli_real_escape_string($conn, $_POST['Team']);
 
-    // File handling
+    
     $file_path = $player['file_path'];
     $file_name = $player['file_name'];
     $valid_file = true;
@@ -50,16 +50,16 @@ if (isset($_POST['update_player'])) {
     if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
         $photo = $_FILES['photo'];
 
-        // Allowed file types
+       
         $allowed_types = ['image/jpeg', 'image/png'];
         if (!in_array($photo['type'], $allowed_types)) {
             echo "<script>alert('Invalid file type. Only .jpg and .png files are allowed.');</script>";
             $valid_file = false;
-        } elseif ($photo['size'] > 2 * 1024 * 1024) { // Check file size (2MB max)
+        } elseif ($photo['size'] > 2 * 1024 * 1024) { 
             echo "<script>alert('File size is too large. Maximum size is 2MB.');</script>";
             $valid_file = false;
         } else {
-            // Generate unique file name and save
+          
             $new_file_name = uniqid() . '.' . pathinfo($photo['name'], PATHINFO_EXTENSION);
             $upload_dir = 'uploads/';
             $file_path = $upload_dir . $new_file_name;
@@ -67,7 +67,7 @@ if (isset($_POST['update_player'])) {
             if (move_uploaded_file($photo['tmp_name'], $file_path)) {
                 $file_name = $new_file_name;
 
-                // Delete old file if it exists
+               
                 if (!empty($player['file_path']) && file_exists($player['file_path'])) {
                     unlink($player['file_path']);
                 }
@@ -78,7 +78,7 @@ if (isset($_POST['update_player'])) {
         }
     }
 
-    // Update player details if file upload is valid
+  
     if ($valid_file) {
         $sql = "UPDATE Players SET 
                     First_name = '$first_name', 

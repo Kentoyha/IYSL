@@ -9,7 +9,7 @@ include("menu.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teams</title>
     <style>
-        /* Basic Styling for the Page */
+       
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f9f9f9;
@@ -21,16 +21,16 @@ include("menu.php");
             text-align: center;
             color: black;        }
 
-        /* Container for Add Team Button */
+       
         .add-team-container {
             display: flex;
             justify-content: center;
             margin-bottom: 20px;
         }
 
-        /* Add Team Button Styling */
+       
         .add-team-btn {
-            background-color: #4CAF50; /* Green */
+            background-color: #4CAF50; 
             color: white;
             padding: 12px 25px;
             border: none;
@@ -43,7 +43,7 @@ include("menu.php");
             background-color: #45a049;
         }
 
-        /* Table Styling */
+        
         table {
             width: 80%;
             margin: 0 auto;
@@ -72,13 +72,24 @@ include("menu.php");
             background-color: #f1f1f1;
         }
 
-        /* Action Buttons */
+        
         .actbutton, .actdelete {
             background-color: #4CAF50;
             color: white;
             padding: 6px 12px;
             border-radius: 4px;
             text-decoration: none;
+        }
+
+        .actedit {
+            background-color: #1cc6ff;
+            padding: 6px 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            color: white;
+        }
+        .actedit:hover {
+            background-color: #32b6e3;
         }
 
         .actbutton:hover, .actdelete:hover {
@@ -93,7 +104,7 @@ include("menu.php");
             background-color: #c82333;
         }
 
-        /* Image Styling */
+      
         img {
             width: 80px;
             height: 80px;
@@ -135,7 +146,7 @@ include("menu.php");
                 echo "<td>" . $result["City"] . "</td>";
                 echo "<td>" . $result["Manager_Lastname"] . ", " . $result["Manager_Firstname"] . " " . $result["Manager_Middlename"] . "</td>";
                 echo "<td>";
-                echo "<a class='actbutton' href='Edit_team.php?action=edit&Team_id={$result['Team_id']}'>Edit</a>";
+                echo "<a class='actedit' href='Edit_team.php?action=edit&Team_id={$result['Team_id']}'>Edit</a>";
                 echo "<a class='actdelete' href='Teams.php?action=delete&Team_id={$result['Team_id']}'>Delete</a>";
                 echo "</td>";
                 echo "</tr>";
