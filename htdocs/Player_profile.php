@@ -1,7 +1,6 @@
 <?php
 include("db_connect.php"); 
-include("menu.php");       
-include("header.php");    
+include("menu.php");  
 
 if (isset($_GET['Player_id'])) {
     $Player_id = $_GET['Player_id'];
@@ -29,8 +28,56 @@ if (isset($_GET['Player_id'])) {
 <html>
 <head>
     <title>Player Profile</title>
-    <link rel="stylesheet" href="profile.css"> 
 </head>
+<style>
+    body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.profile-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
+}
+
+.profile-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    margin-bottom: 20px;
+}
+
+.profile-details h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.profile-details p {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.back-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+</style>
 <body>
     <div class="profile-container" style="display: flex; justify-content: center; align-items: center; flex-direction: column; height: 80vh;">
         <h1>Player Profile</h1>
@@ -38,7 +85,7 @@ if (isset($_GET['Player_id'])) {
             
             <div class="profile-photo">
                 <?php 
-                echo "<img src='" . htmlspecialchars($player['File_path']) . "' width='100' height='100' style='border-radius: 50%;'>";
+                echo "<img src='" . htmlspecialchars($player['File_path']) . "' width='150' height='150' style='border-radius: 50%;'>";
                  ?>
             </div>
 

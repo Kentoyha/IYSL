@@ -1,21 +1,109 @@
 <?php
-include("db_connect.php");
-
-
+include 'db_connect.php';
+include 'menu.php';
 ?>
- <link rel="stylesheet" href="games.css">
+<!DOCTYPE html>
+<html>
+<body>
+ <style>
+   
+   body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
 
-<body>  
-    <?php
-    include("menu.php");
-    include("header.php");
-    ?>
-    
-        <h1>International Youth Soccer League</h1>
+    .title {
+        text-align: center;
+        color: #333;
+        margin-top: 20px;
+    }
+
+    .addplayer {
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    .addplayer button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        border-radius: 5px;
+    }
+
+    .addplayer button:hover {
+        background-color: #45a049;
+    }
+
+    table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        background-color: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    .button {
+        padding: 10px 15px;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+        border-radius: 5px;
+    }
+
+    .button.green {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .button.red {
+        background-color: #f44336;
+        color: white;
+    }
+
+    .button.green:hover {
+        background-color: #45a049;
+    }
+
+    .button.red:hover {
+        background-color: #e53935;
+    }
+
+    select {
+        padding: 10px;
+        font-size: 16px;
+        margin-right: 10px;
+    }
+
+    img {
+        border-radius: 50%;
+    }
+</style>
+        <h1 align="center">International Youth Soccer League</h1>
         <h2 align="center">Latest Games </h2>
         <div class="container">
         <div class="buanga">
-        <a href="Add_game.php" class="buanga"><button >Add New Game</button></a>
+        <div class="addplayer">
+            <a href="Add_game.php"><button>Add New Game</button></a>
+        </div>
         </div>
         </div>
         
@@ -113,3 +201,5 @@ include("db_connect.php");
         }
     }
     ?>
+    </body>
+</html>

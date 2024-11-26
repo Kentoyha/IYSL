@@ -1,8 +1,6 @@
 <?php
 include("db_connect.php");
 include("menu.php");
-include("header.php");
-
 ?>
 
  <link rel="stylesheet" href="home.css">
@@ -10,8 +8,7 @@ include("header.php");
 
 <body>  
 
-        <h1>IYSL</h1>
-        <h2 align="center">International Youth Soccer League </h2>
+        <h1 align="center">International Youth Soccer League </h1>
         
         <div class="logo" style="text-align: center;">
             <img src="uploads/image.png" alt="logo" style="border-radius: 50%;">

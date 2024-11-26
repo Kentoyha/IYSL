@@ -1,5 +1,6 @@
 <?php
 include("db_connect.php");
+include("menu.php");
 ?>
 
 <head>
@@ -7,11 +8,6 @@ include("db_connect.php");
 </head>
 
 <body>
-    <?php
-        include("menu.php");
-        include("header.php");
-    ?>
-
 <h1>REGISTER A TEAM</h1>
 <hr>
 
@@ -51,7 +47,7 @@ include("db_connect.php");
 
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;

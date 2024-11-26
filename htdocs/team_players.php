@@ -75,7 +75,7 @@ include "menu.php";
                     // Player Photo
                     if (!empty($result['File_path']) && file_exists($result['File_path'])) {
                         echo "<td><a href='Player_profile.php?Player_id=" . htmlspecialchars($result['Player_id']) . "'>";
-                        echo "<img src='" . htmlspecialchars($result['File_path']) . "' alt='Player Photo' width='100' height='100'>";
+                        echo "<img src='" . htmlspecialchars($result['File_path']) . "' alt='Player Photo' width='100' height='100' style='border-radius: 50%;'>";
                         echo "</a></td>";
                     } else {
                         echo "<td><p>No photo available</p></td>";
