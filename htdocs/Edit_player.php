@@ -1,91 +1,110 @@
 <?php
-    include("db_connect.php");
+include("db_connect.php");
 
-    if (isset($_GET['Player_id'])) {
-        $Player_id = mysqli_real_escape_string($conn, $_GET['Player_id']);
+if (isset($_GET['Player_id'])) {
+    $Player_id = mysqli_real_escape_string($conn, $_GET['Player_id']);
 
-        $sql = "SELECT * FROM Players WHERE Player_id = $Player_id";
-        $query = mysqli_query($conn, $sql);
-        $player = mysqli_fetch_assoc($query);
+    $sql = "SELECT * FROM Players WHERE Player_id = '$Player_id'";
+    $query = mysqli_query($conn, $sql);
+    $player = mysqli_fetch_assoc($query);
 
-        if (!$player) {
-            echo "<script>alert('Player not found'); window.location='Player_list.php';</script>";
-            exit();
-        }
-    } else {
-        echo "<script>alert('No player selected'); window.location='Player_list.php';</script>";
+    if (!$player) {
+        echo "<script>alert('Player not found'); window.location='Player_list.php';</script>";
         exit();
     }
+} else {
+    echo "<script>alert('No player selected'); window.location='Player_list.php';</script>";
+    exit();
+}
 
-    if (isset($_POST['update_player'])) {
-        $first_name = mysqli_real_escape_string($conn, $_POST['first_name']);
-        $middle_name = mysqli_real_escape_string($conn, $_POST['middle_name']);
-        $last_name = mysqli_real_escape_string($conn, $_POST['last_name']);
-        $date_of_birth = mysqli_real_escape_string($conn, $_POST['date_of_birth']);
-        $email = mysqli_real_escape_string($conn, $_POST['email']);
-        $contact_number = mysqli_real_escape_string($conn, $_POST['contact_number']);
-        $team_id = mysqli_real_escape_string($conn, $_POST['Team']);
+if (isset($_GET['Player_id'])) {
+    $Player_id = mysqli_real_escape_string($conn, $_GET['Player_id']);
 
-       
-        $file_path = $player['file_path']; 
-        $file_name = $player['file_name']; 
+    $sql = "SELECT * FROM Players WHERE Player_id = '$Player_id'";
+    $query = mysqli_query($conn, $sql);
+    $player = mysqli_fetch_assoc($query);
 
-        if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
-            $photo = $_FILES['photo'];
+    if (!$player) {
+        echo "<script>alert('Player not found'); window.location='Player_list.php';</script>";
+        exit();
+    }
+} else {
+    echo "<script>alert('No player selected'); window.location='Player_list.php';</script>";
+    exit();
+}
 
-            
-            $allowed_types = ['image/jpeg', 'image/png'];
-            if (!in_array($photo['type'], $allowed_types)) {
-                echo "<script>alert('Invalid file type. Only .jpg and .png files are allowed.');</script>";
-            } else {
-                
-                if ($photo['size'] > 2 * 1024 * 1024) {
-                    echo "<script>alert('File size is too large. Maximum size is 2MB.');</script>";
-                } else {
-                    
-                    $new_file_name = uniqid() . '.' . pathinfo($photo['name'], PATHINFO_EXTENSION);
-                    $upload_dir = 'uploads/'; 
-                    $file_path = $upload_dir . $new_file_name;
+if (isset($_POST['update_player'])) {
+    $first_name = mysqli_real_escape_string($conn, $_POST['first_name']);
+    $middle_name = mysqli_real_escape_string($conn, $_POST['middle_name']);
+    $last_name = mysqli_real_escape_string($conn, $_POST['last_name']);
+    $date_of_birth = mysqli_real_escape_string($conn, $_POST['date_of_birth']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $contact_number = mysqli_real_escape_string($conn, $_POST['contact_number']);
+    $team_id = mysqli_real_escape_string($conn, $_POST['Team']);
 
-                  
-                    if (move_uploaded_file($photo['tmp_name'], $file_path)) {
-                        $file_name = $new_file_name;
+    // File handling
+    $file_path = $player['file_path'];
+    $file_name = $player['file_name'];
+    $valid_file = true;
 
-                       
-                        if (!empty($player['file_path']) && file_exists($player['file_path'])) {
-                            unlink($player['file_path']);
-                        }
-                    } else {
-                        echo "<script>alert('Error uploading the photo.');</script>";
-                    }
+    if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
+        $photo = $_FILES['photo'];
+
+        // Allowed file types
+        $allowed_types = ['image/jpeg', 'image/png'];
+        if (!in_array($photo['type'], $allowed_types)) {
+            echo "<script>alert('Invalid file type. Only .jpg and .png files are allowed.');</script>";
+            $valid_file = false;
+        } elseif ($photo['size'] > 2 * 1024 * 1024) { // Check file size (2MB max)
+            echo "<script>alert('File size is too large. Maximum size is 2MB.');</script>";
+            $valid_file = false;
+        } else {
+            // Generate unique file name and save
+            $new_file_name = uniqid() . '.' . pathinfo($photo['name'], PATHINFO_EXTENSION);
+            $upload_dir = 'uploads/';
+            $file_path = $upload_dir . $new_file_name;
+
+            if (move_uploaded_file($photo['tmp_name'], $file_path)) {
+                $file_name = $new_file_name;
+
+                // Delete old file if it exists
+                if (!empty($player['file_path']) && file_exists($player['file_path'])) {
+                    unlink($player['file_path']);
                 }
+            } else {
+                echo "<script>alert('Error uploading the photo.');</script>";
+                $valid_file = false;
             }
         }
+    }
 
-       
-        $update_sql = "UPDATE Players SET 
-            First_name = '$first_name', 
-            Middle_name = '$middle_name', 
-            Last_name = '$last_name', 
-            Date_of_birth = '$date_of_birth', 
-            Email = '$email', 
-            Contact_number = '$contact_number',
-            Team_id = '$team_id',
-            file_path = '$file_path',
-            file_name = '$file_name',
-            upload_date = NOW() 
-            WHERE Player_id = $Player_id";
+    // Update player details if file upload is valid
+    if ($valid_file) {
+        $sql = "UPDATE Players SET 
+                    First_name = '$first_name', 
+                    Middle_name = '$middle_name', 
+                    Last_name = '$last_name', 
+                    Date_of_birth = '$date_of_birth', 
+                    Email = '$email', 
+                    Contact_number = '$contact_number', 
+                    Team_id = '$team_id', 
+                    file_path = '$file_path', 
+                    file_name = '$file_name' 
+                WHERE Player_id = '$Player_id'";
 
-        if (mysqli_query($conn, $update_sql)) {
-            echo "<script>alert('Player information updated successfully'); window.location='Player_list.php';</script>";
+        $query = mysqli_query($conn, $sql);
+
+        if ($query) {
+            echo "<script>alert('Player updated successfully'); window.location='Player_list.php';</script>";
         } else {
-            echo "<script>alert('Error updating player information');</script>";
+            echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
         }
     }
+}
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Edit Player</title>
@@ -139,7 +158,6 @@
                 </td>
             </tr>
 
-            
             <tr>
                 <td><label for="photo">Profile Photo:</label></td>
                 <td>

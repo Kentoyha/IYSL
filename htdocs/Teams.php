@@ -40,8 +40,8 @@ include("header.php");
          } else {
              while($result = mysqli_fetch_assoc($query)) {
                  echo "<tr>";
-                 echo "<td><img src='{$result['File_path1']}' width='100' height='100' style='border-radius: 50%;'></td>";
-                 echo "<td><a href='team_players.php?team_id=" . $result["Team_id"] . "' style='text-decoration: none;'>" . $result["Team_name"] . "</a></td>";
+                 echo "<td><a href='team_players.php?team_id=" . $result["Team_id"] . "' style='text-decoration: none;'><img src='{$result['File_path1']}' width='100' height='100' style='border-radius: 50%;'></a></td>";
+                 echo "<td>" . $result["Team_name"] . "</td>";
                  echo "<td>" . $result["City"] . "</td>";
                  echo "<td>" . $result["Manager_Lastname"] . ", " . $result["Manager_Firstname"] . " " . $result["Manager_Middlename"] . "</td>";
                     echo "<td>";

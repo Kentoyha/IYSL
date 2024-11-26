@@ -28,7 +28,7 @@ include "db_connect.php";
     }
     
 ?>
-    <h1> EDIT TEAM </h1>a
+    <h1> EDIT TEAM </h1>
     <form method="post" enctype="multipart/form-data">
         <table border=1 align="center" cellspacing="0" cellpadding="10">
             <tr>
@@ -83,7 +83,8 @@ include "db_connect.php";
             $Team_id = $_POST['Team_id'];
             $file_path = ''; 
             $file_name = ''; 
-
+            $valid_file = true;
+            
             if (isset($_FILES['logo']) && $_FILES['logo']['error'] == 0) {
                 $logo = $_FILES['logo'];
     
@@ -91,10 +92,12 @@ include "db_connect.php";
                 $allowed_types = ['image/jpeg', 'image/png'];
                 if (!in_array($logo['type'], $allowed_types)) {
                     echo "<script>alert('Invalid file type. Only .jpg and .png files are allowed.');</script>";
+                    $valid_file = false;
                 } else {
                     
                     if ($logo['size'] > 2 * 1024 * 1024) {
                         echo "<script>alert('File size is too large. Maximum size is 2MB.');</script>";
+                        $valid_file = false;
                     } else {
                         
                         $new_file_name = uniqid() . '.' . pathinfo($logo['name'], PATHINFO_EXTENSION);
@@ -106,30 +109,28 @@ include "db_connect.php";
                             $file_name = $new_file_name;
     
                            
-                            if (!empty($Team['file_path']) && file_exists($Team['file_path'])) {
-                                unlink($Team['file_path']);
+                            if (!empty($Team['File_path1']) && file_exists($Team['File_path1'])) {
+                                unlink($Team['File_path1']);
                             }
                         } else {
                             echo "<script>alert('Error uploading the photo.');</script>";
+                            $valid_file = false;
                         }
                     }
-                }
+                } if($valid_file) {
+                    $sql = "UPDATE Team SET Team_name = '$Team_name', City = '$City', manager_lastname = '$lastname', manager_firstname = '$firstname', manager_middlename = '$middlename', File_path1 = '$file_path', File_name1 = '$file_name', date_upload = NOW() WHERE Team_id = $Team_id";
+                        $query = mysqli_query($conn, $sql);
+                        if($query) {
+                            echo "<script> alert('Team updated successfully'); window.location='Teams.php';</script>";
+                        } else {
+                            echo "<script> alert('Error: " . $sql . "<br>" . mysqli_error($conn) . "'); </script>";
+                        }
+                    }
+                        
             }
-    
 
-            $sql = "SELECT * FROM Team WHERE Team_id = $Team_id";
-            $query = mysqli_query($conn, $sql);
             
-            if($query) {
-        $sql = "UPDATE Team SET Team_name = '$Team_name', City = '$City', manager_lastname = '$lastname', manager_firstname = '$firstname', manager_middlename = '$middlename', File_path1 = '$file_path', File_name1 = '$file_name', date_upload = NOW() WHERE Team_id = $Team_id";
-                $query = mysqli_query($conn, $sql);
-                if($query) {
-                    echo "<script> alert('Team updated successfully'); window.location='Teams.php';</script>";
-                } else {
-                    echo "<script> alert('Error: " . $sql . "<br>" . mysqli_error($conn) . "'); </script>";
-                }
-            }
-                
+           
         }
     ?>
 
