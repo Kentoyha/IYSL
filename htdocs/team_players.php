@@ -8,9 +8,60 @@ include "menu.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="team_player.css">
+    <link rel="stylesheet" href="toyken.css">
     <title>Team Player Lineup</title>
 </head>
+<style>
+   body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #333;
+    margin-top: 20px;
+}
+
+.player-table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse; /* Ensures borders collapse into one */
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.player-table th, .player-table td {
+    padding: 12px; /* Added padding for better spacing */
+    text-align: center;
+    border: 1px solid #ddd; /* Border for each cell */
+}
+
+.player-table th {
+    background-color: #f2f2f2;
+    color: black;
+    font-weight: bold;
+}
+
+.player-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.player-table tr:hover {
+    background-color: #ddd;
+}
+
+.player-table img {
+    border-radius: 50%;
+}
+
+.player-table p {
+    margin: 0;
+}
+
+</style>
+
 <body>
     <?php 
     if (isset($_GET['team_id'])) {
@@ -32,7 +83,7 @@ include "menu.php";
     
     <div align="center">
         <?php if (!empty($team['File_path1']) && file_exists($team['File_path1'])): ?>
-            <img src="<?php echo htmlspecialchars($team['File_path1']); ?>" alt="Team Logo" width="100" height="100" style="border-radius: 50%;">
+            <img src="<?php echo htmlspecialchars($team['File_path1']); ?>" alt="Team Logo" width="150" height="150" style="border-radius: 50%;">
         <?php else: ?>
             <p>No team logo available</p>
         <?php endif; ?>
@@ -51,7 +102,7 @@ include "menu.php";
         <tbody>
             <?php
             $sql = "SELECT 
-                        p.Player_id,
+                   p.Player_id,
                         p.Last_name, 
                         p.First_name, 
                         p.Middle_name, 

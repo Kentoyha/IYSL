@@ -45,14 +45,14 @@ if (isset($_GET['Player_id'])) {
 .profile-card {
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
     padding: 20px;
     text-align: center;
+    width: 700px;
 }
-
 .profile-photo {
-    width: 150px;
-    height: 150px;
+    width: 400px;
+    height: 300px;
     border-radius: 50%;
     border: 2px solid #ccc;
     margin-bottom: 20px;
@@ -85,7 +85,7 @@ if (isset($_GET['Player_id'])) {
             
             <div class="profile-photo">
                 <?php 
-                echo "<img src='" . htmlspecialchars($player['File_path']) . "' width='150' height='150' style='border-radius: 50%;'>";
+                echo "<img src='" . htmlspecialchars($player['File_path']) . "' width='400' height='300' style='border-radius: 50%;'>";
                  ?>
             </div>
 

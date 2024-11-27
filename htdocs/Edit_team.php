@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="editeam.css">
     
     <title>Edit Team</title>
-    <hr>
+    
 </head>
 <?php
 include "db_connect.php";
@@ -28,7 +28,7 @@ include "db_connect.php";
     }
     
 ?>
-    <h1> EDIT TEAM </h1>
+    <h1> Edit Team </h1>
     <form method="post" enctype="multipart/form-data">
         <table border=1 align="center" cellspacing="0" cellpadding="10">
             <tr>

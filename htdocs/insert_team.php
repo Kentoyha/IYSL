@@ -8,8 +8,7 @@ include("menu.php");
 </head>
 
 <body>
-<h1>REGISTER A TEAM</h1>
-<hr>
+<h1>Register a Team</h1>
 
     <form method="post" enctype="multipart/form-data">
         <table border=1 align="center" cellspacing="0" cellpadding="10">

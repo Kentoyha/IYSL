@@ -9,12 +9,14 @@ include("menu.php");
 <body>  
 
         <h1 align="center">International Youth Soccer League </h1>
+        <br>
         
         <div class="logo" style="text-align: center;">
             <img src="uploads/image.png" alt="logo" style="border-radius: 50%;">
         </div>
         
-
+<br>    
+<br>
         <p style="text-align: center;">
             IYSL is a regional soccer association that offers teenagers the opportunity to participate in soccer games and practices. <br>
             The leagues typically focus on skill development, teamwork, and sportsmanship, providing a structured environment for players of various skill levels.<br>

@@ -12,7 +12,7 @@ include 'menu.php';
 include 'header.php';
 ?>
 <body>
-<h1> ADD NEW GAME RECORD </h1>
+<h1> Add New Game Record </h1>
     <form method="post">
         <table border=1 align="center" cellspacing="0" cellpadding="10">
             <tr>

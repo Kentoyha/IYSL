@@ -7,8 +7,7 @@ include("header.php");
 <head>
     <link rel="stylesheet" href="addp.css">
 </head>
-<h1> REGISTER A PLAYER </h1>
-<hr>
+<h1> Register a Player </h1>
 <form method="post" enctype="multipart/form-data">
 
     <table border=1 align="center" cellspacing="0" cellpadding="10">
