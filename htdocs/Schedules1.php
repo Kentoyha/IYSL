@@ -1,6 +1,6 @@
 <?php
 include 'db_connect.php';
-include 'menu.php';
+include 'Menu1.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -49,7 +49,7 @@ include 'menu.php';
 
     th, td {
         padding: 12px;
-        text-align: left;
+        text-align: Center;
         border-bottom: 1px solid #ddd;
     }
 
@@ -98,7 +98,7 @@ include 'menu.php';
     }
 </style>
        
-        <h1 align="center">Completed Orders </h1>
+        <h1 align="center">Pick up Schedules </h1>
         <div class="container">
         <div class="buanga">
         <div class="addplayer">
@@ -113,11 +113,13 @@ include 'menu.php';
         <table align="center" cellspacing="0" cellpadding="10">
         <tr>
             
-            <th>Date <br> Ordered </th>
-            <th>Scheduled <br> Date  </th>
-            <th>Date <br> Delivered</th>
-            <th>Date Completed</th>
-            <th>Time Completed</th>
+            <th>Destination</th>
+            <th>Date</th>
+            <th>Pick up <br> Staff</th>
+            <th>Contact <br> Info  </th>
+            <th>Status</th>
+            <th>Action</th>
+            
         
 
         </tr>

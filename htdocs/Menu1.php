@@ -1,11 +1,10 @@
 
 <nav>  
     <ul>
-        <li><a href="home.php">Home</a></li>
-        <li><a href="Orders.php">Orders</a></li>
+        <li><a href="Home1.php">Home</a></li>
         <li><a href="Schedules1.php">Schedules</a></li>
-        <li><a href="Delivery.php">Deliveries</a></li>
-        <li><a href="Games.php">Reciept</a></li>
+        <li><a href="Delivery1.php">Deliveries</a></li>
+        
      </ul>
         </nav>
         <style>

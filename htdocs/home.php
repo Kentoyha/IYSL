@@ -3,17 +3,43 @@ include("db_connect.php");
 include("menu.php");
 ?>
 
- <link rel="stylesheet" href="home.css">
+ 
  
 
-<body>  
 
-        <h1 align="center">International Youth Soccer League </h1>
+
+<?php
+include 'Menu.php'; // Include the menu
+session_start(); // Start the session
+
+// Check if the user is logged in and has the correct account level
+if (!isset($_SESSION['username']) || $_SESSION['account_level'] != 1) {
+    header("Location: login.php"); // Redirect to login page if not logged in or not an admin
+    exit();
+}
+
+// If the user is logged in and is an admin, display the dashboard
+?>
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="home.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="home.css">
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, <?php echo $_SESSION['username']; ?>!</h1>
+    <p>This is the admin dashboard.</p>
+    <a href="logout.php">Logout</a>
+
+       <!-- <h1 align="center">Scheduling System with Comprehensive Delivery Management  </h1>
         <br>
         
-        <div class="logo" style="text-align: center;">
-            <img src="uploads/image.png" alt="logo" style="border-radius: 50%;">
-        </div>
+    <div class="logo" style="text-align: center;">
+        <img src="uploads/bg6.jpg" alt="logo" style="border-radius: 50%;">
+      </div> 
         
 <br>    
 <br>
@@ -23,4 +49,7 @@ include("menu.php");
             Each city in the region has one team that represents it. <br>
             Each team has a maximum of 15 players and a minimum of 11 players. Each team also has up to three coaches. <br>
             Each team plays two games (home and visitor) against all the other teams during the season.
-        </p>
+        </p> -->
+
+</body>
+</html>
