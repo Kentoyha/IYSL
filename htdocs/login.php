@@ -13,7 +13,8 @@ if (isset($_POST['submit'])) {
 
     if (mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_assoc($result);
-        $_SESSION['username'] = $row['Username'];
+        $_SESSION['username'] = $username;
+        $_SESSION['Admin_ID'] = $row['Admin_ID'];
         $_SESSION['account_level'] = 1; // Admin account level
         header("Location: home.php"); // Redirect to admin dashboard
         exit();
@@ -24,7 +25,8 @@ if (isset($_POST['submit'])) {
 
         if (mysqli_num_rows($result) == 1) {
             $row = mysqli_fetch_assoc($result);
-            $_SESSION['username'] = $row['Username'];
+            $_SESSION['username'] = $username;
+            $_SESSION['User_ID'] = $row['User_ID'];
             $_SESSION['account_level'] = 2; // User account level
             header("Location: Home1.php"); // Redirect to user dashboard
             exit();

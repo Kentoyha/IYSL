@@ -4,14 +4,11 @@ include("menu.php");
 
 session_start();
 
-if (!isset($_SESSION['username']) || !isset($_SESSION['User_ID']) || $_SESSION['account_level'] != 2) {
-    header("Location: login.php"); // Redirect to login page if not logged in or not a user
+if (!isset($_SESSION['username']) || !isset($_SESSION['Admin_ID']) || $_SESSION['account_level'] != 1) {
+    header("Location: login.php"); // Redirect to login page if not logged in or not an admin
     exit();
-    
-    $User_ID = $_SESSION['User_ID'];
-    
-   
-}   
+}
+  
 ?>
 
 
@@ -148,11 +145,11 @@ if (isset($_POST['Order'])) {
     $Place = $_POST['Place'];
     $Priority_number = $_POST['Priority'];
     $Status = $_POST['Status'];
-    $User_ID = $_SESSION['User_ID'];
+    $Admin_ID = $_SESSION['Admin_ID'];
    
 
-    $sql = "INSERT INTO Orders (Order_date, Laundry_type, Laundry_quantity, Cleaning_type, Place, Priority_number, Status, User_ID)
-     VALUES ('$Order_date', '$Laundry_Type', '$Laundry_Quantity', '$Cleaning_Type', '$Place', '$Priority_number', '$Status' , '$User_ID')";
+    $sql = "INSERT INTO Orders (Order_date, Laundry_type, Laundry_quantity, Cleaning_type, Place, Priority_number, Status, Admin_ID)
+     VALUES ('$Order_date', '$Laundry_Type', '$Laundry_Quantity', '$Cleaning_Type', '$Place', '$Priority_number', '$Status' , '$Admin_ID')";
 
     $query = mysqli_query($conn, $sql);
 

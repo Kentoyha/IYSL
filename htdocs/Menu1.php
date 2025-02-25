@@ -2,8 +2,9 @@
 <nav>  
     <ul>
         <li><a href="Home1.php">Home</a></li>
-        <li><a href="Schedules1.php">Schedules</a></li>
-        <li><a href="Delivery1.php">Deliveries</a></li>
+        <li><a href="Orders_user.php">Orders</a></li>
+        <li><a href="Schedules1.php">Delivery</a></li>
+        <li><a href="Delivery1.php">Pick up</a></li>
         
      </ul>
         </nav>

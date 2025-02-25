@@ -1,6 +1,13 @@
 <?php
 include("db_connect.php");
 include("menu.php");
+
+session_start();
+
+if (!isset($_SESSION['username']) || $_SESSION['account_level'] != 1) {
+    header("Location: login.php"); // Redirect to login page if not logged in or not an admin
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -119,7 +126,7 @@ include("menu.php");
     <h1>Orders</h1>
 
     <div class="add-team-container">
-        <a href="Place_order.php">
+        <a href="Placeorder1.php">
             <button class="add-team-btn">Place Order</button align="center">
         </a>
     </div>
@@ -127,39 +134,42 @@ include("menu.php");
     <table>
         <tr>
            
-            <th>Laundry Amount</th>
             <th>Laundry Type</th>
+            <th>Order Date</th>
+            <th>Laundry Quantity</th>
             <th>Cleaning Type</th>
             <th>Place</th>
-            <th>Contact info</th>
+            <th>Priority Number</th>
             <th>Status</th>
-            <th>Actions</th>
+           
         
         </tr>
 
         <?php
-        $sql = "SELECT * FROM Team ORDER BY Team_Name ASC";
+       $sql = "SELECT Order_ID, Order_date, Laundry_type, Laundry_quantity, Cleaning_type, Place, Priority_number, Status 
+       FROM Orders 
+       WHERE Status != 'To be Delivered'ORDER BY Priority_number ASC";
+
         $query = mysqli_query($conn, $sql);
         if (!$query) {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         } else {
             while ($result = mysqli_fetch_assoc($query)) {
                 echo "<tr>";
-                echo "<td><a href='team_players.php?team_id=" . $result["Team_id"] . "' style='text-decoration: none;'><img src='{$result['File_path1']}' alt='Team Logo'></a></td>";
-                echo "<td>" . $result["Team_name"] . "</td>";
-                echo "<td>" . $result["City"] . "</td>";
-                echo "<td>" . $result["Manager_Lastname"] . ", " . $result["Manager_Firstname"] . " " . $result["Manager_Middlename"] . "</td>";
-                echo "<td>";
-                echo "<a class='actedit' href='Edit_team.php?action=edit&Team_id={$result['Team_id']}'>Edit</a>";
-                echo "<a class='actdelete' href='Teams.php?action=delete&Team_id={$result['Team_id']}'>Delete</a>";
-                echo "</td>";
+                echo "<td>" . $result["Laundry_type"] . "</td>";
+                echo "<td>" . $result["Order_date"] . "</td>";
+                echo "<td>" . $result["Laundry_quantity"] . "</td>";
+                echo "<td>" . $result["Cleaning_type"] . "</td>";
+                echo "<td>" . $result["Place"] . "</td>";
+                echo "<td>" . $result["Priority_number"] . "</td>";
+                echo "<td><a href='Config_orders.php?Order_ID=" . $result["Order_ID"] . "'>" . $result["Status"] . "</a></td>";
                 echo "</tr>";
             }
         }
 
-        if (isset($_GET['action']) && isset($_GET['Team_id'])) {
+        if (isset($_GET['action']) && isset($_GET['Order_ID'])) {
             $action = trim($_GET['action']);
-            $Team_id = trim($_GET['Team_id']);
+            $Team_id = trim($_GET['Order_ID']);
 
             if ($action == 'delete') {
                 $sql = "DELETE FROM Team WHERE Team_id = $Team_id";

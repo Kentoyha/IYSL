@@ -98,7 +98,7 @@ include 'Menu1.php';
     }
 </style>
        
-        <h1 align="center">Pick up Schedules </h1>
+        <h1 align="center"> Delivery </h1>
         <div class="container">
         <div class="buanga">
         <div class="addplayer">
@@ -113,64 +113,36 @@ include 'Menu1.php';
         <table align="center" cellspacing="0" cellpadding="10">
         <tr>
             
-            <th>Destination</th>
-            <th>Date</th>
-            <th>Pick up <br> Staff</th>
+            <th>Order Date</th>
+            <th>Delivery Date</th>
+            <th>Delivery <br> Staff Name</th>
             <th>Contact <br> Info  </th>
             <th>Status</th>
-            <th>Action</th>
+           
             
         
 
         </tr>
-        <?php
-        
-?>
+   
         <?php
        
-    $sql = "SELECT 
-                Game.Game_id, 
-                Game.Date, 
-                Game.Time, 
-                Game.Location, 
-                Game.Home_team_id, 
-                Game.Away_team_id, 
-                HomeTeam.Team_name as Home_team, 
-                AwayTeam.Team_name as Away_team, 
-                Game.home_score, 
-                Game.away_score 
-            FROM Game 
-            INNER JOIN Team as HomeTeam ON Game.Home_team_id = HomeTeam.Team_id 
-            INNER JOIN Team as AwayTeam ON Game.Away_team_id = AwayTeam.Team_id"
-            ;
-    $query = mysqli_query($conn, $sql);
-    if (!$query){
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-    } else {
-        
-    }
+    $sql = "SELECT Delivery.*, Orders.Order_date FROM Delivery INNER JOIN Orders ON Delivery.Order_ID = Orders.Order_ID";
 
-    while($result = mysqli_fetch_assoc($query)) {
-        echo "<tr>";
-        echo "<td>" . $result["Game_id"] . "</td>";
-        echo "<td>" . $result["Date"] . "</td>";
-        echo "<td>" . $result["Time"] . "</td>";
-        echo "<td>" . $result["Location"] . "</td>";
-        echo "<td><a href='team_players.php?team_id=" . $result["Home_team_id"] . "' style='text-decoration: none;'>" . $result["Home_team"] . "</a></td>";
-        echo "<td><a href='team_players.php?team_id=" . $result["Away_team_id"] . "' style='text-decoration: none;'>" . $result["Away_team"] . "</a></td>";
-        echo "<td>" . $result["home_score"] . "</td>";
-        echo "<td>" . $result["away_score"] . "</td>";
-        
-        if ($result["home_score"] > $result["away_score"]) {
-            echo "<td>" . $result["Home_team"] . "</td>";
-        } elseif ($result["home_score"] < $result["away_score"]) {
-            echo "<td>" . $result["Away_team"] . "</td>";
-        } else {
-            echo "<td>Draw</td>";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "<tr>";
+            echo "<td>" . $row['Order_date'] . "</td>";
+            echo "<td>" . $row['Delivery_date'] . "</td>";
+            echo "<td>" . $row['Delivery_staff_name'] . "</td>";
+            echo "<td>" . $row['Contact_info'] . "</td>";
+            echo "<td>" . $row['Status'] . "</td>";
+            echo "</tr>";
         }
-        
+    } else {
+        echo "<tr><td colspan='5'>No records found.</td></tr>";
     }
-    
     ?>
     </table>
  <style>

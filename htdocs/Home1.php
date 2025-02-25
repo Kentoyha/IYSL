@@ -135,7 +135,7 @@ if (!isset($_SESSION['username']) || $_SESSION['account_level'] != 2) {
     <h1>Orders</h1>
 
     <div class="add-team-container">
-        <a href="Place_order.php">
+        <a href="Placeorder.php">
             <button class="add-team-btn">Place Order</button align="center">
         </a>
     </div>

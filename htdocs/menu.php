@@ -3,8 +3,8 @@
     <ul>
         <li><a href="home.php">Home</a></li>
         <li><a href="Orders.php">Orders</a></li>
-        <li><a href="Schedules1.php">Schedules</a></li>
         <li><a href="Delivery.php">Deliveries</a></li>
+        <li><a href="">Pick Up</a></li>
         <li><a href="Games.php">Reciept</a></li>
      </ul>
         </nav>
